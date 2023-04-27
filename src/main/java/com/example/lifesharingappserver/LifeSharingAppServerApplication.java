@@ -13,8 +13,8 @@ public class LifeSharingAppServerApplication {
         SpringApplication.run(LifeSharingAppServerApplication.class, args);
     }
 
-    @GetMapping("/showOK")
-    public static String showOk(){
-        return "OK";
+    @GetMapping("/")
+    public int getNum() {
+        return 1;
     }
 }
