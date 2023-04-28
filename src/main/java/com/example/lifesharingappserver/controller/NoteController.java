@@ -37,4 +37,19 @@ public class NoteController{
         QueryWrapper<Note> queryWrapper = new QueryWrapper<>();
 
         return noteService.page(page, queryWrapper);
-    }}
+    }
+    //test 模糊搜索
+    @GetMapping("/pageTest")
+    public IPage<Note> findPage(@RequestParam Integer pageNum,
+                                @RequestParam Integer pageSize,
+                                @RequestParam(defaultValue = "") String topics) {
+        IPage<Note> page = new Page<>(pageNum,pageSize);
+        QueryWrapper<Note> queryWrapper = new QueryWrapper<>();
+        System.out.println(topics);
+        if (!topics.toString().equals("")) {
+            queryWrapper.like("note_topics", topics);
+        }
+        return noteService.page(page, queryWrapper);
+    }
+}
+

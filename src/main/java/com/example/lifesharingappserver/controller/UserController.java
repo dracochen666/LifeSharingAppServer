@@ -29,8 +29,8 @@ public class UserController {
     }
 
     @GetMapping("/page")
-    public IPage<User> findPage(@RequestParam Integer pageSize,
-                                @RequestParam Integer pageNum
+    public IPage<User> findPage(@RequestParam Integer pageNum,
+                                @RequestParam Integer pageSize
                                 ) {
         IPage<User> page = new Page<>(pageNum,pageSize);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();

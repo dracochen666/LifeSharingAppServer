@@ -1,5 +1,6 @@
 package com.example.lifesharingappserver.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -15,7 +16,7 @@ import java.util.Date;
 @TableName(value = "Note")
 public class Note {
 
-    @TableId(value = "note_id")
+    @TableId(value = "note_id", type = IdType.AUTO)
     private Integer noteId;
     @TableField("note_title")
     private String noteTitle;
