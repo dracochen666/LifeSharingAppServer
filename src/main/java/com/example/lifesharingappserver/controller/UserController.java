@@ -1,13 +1,13 @@
 package com.example.lifesharingappserver.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.lifesharingappserver.entity.User;
 import com.example.lifesharingappserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
@@ -20,15 +20,21 @@ public class UserController {
 
     @GetMapping("/getAllUser")
     public List<User> getAllUser(){
-
-        return userService.getAllUser();
+        return userService.list();
     }
 
-//    @GetMapping("/getUser")
-//    public String getUser(){
-//        User user = new User();
-//        user.setUserId(1);
-//        user.setUserName("xiaoming");
-//        return "userId:"+ user.getUserId() + " userName:"+ user.getUserName();
-//    }
+    @PostMapping("/saveUser")
+    public boolean saveUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
+
+    @GetMapping("/page")
+    public IPage<User> findPage(@RequestParam Integer pageSize,
+                                @RequestParam Integer pageNum
+                                ) {
+        IPage<User> page = new Page<>(pageNum,pageSize);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+
+        return userService.page(page, queryWrapper);
+    }
 }
