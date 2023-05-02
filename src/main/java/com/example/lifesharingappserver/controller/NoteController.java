@@ -4,9 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.lifesharingappserver.entity.Note;
-import com.example.lifesharingappserver.entity.User;
 import com.example.lifesharingappserver.service.NoteService;
-import com.example.lifesharingappserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +35,14 @@ public class NoteController{
         QueryWrapper<Note> queryWrapper = new QueryWrapper<>();
 
         return noteService.page(page, queryWrapper);
+    }
+    @DeleteMapping("/delete")
+    public boolean deleteNoteById(@RequestParam Integer noteId) {
+        return noteService.removeById(noteId);
+    }
+    @DeleteMapping("/{noteId}")
+    public boolean deleteNoteById2(@PathVariable Integer noteId) {
+        return noteService.removeById(noteId);
     }
     //test 模糊搜索
     @GetMapping("/pageTest")
