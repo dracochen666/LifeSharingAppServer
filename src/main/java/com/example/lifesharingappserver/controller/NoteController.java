@@ -46,6 +46,24 @@ public class NoteController{
         return noteService.getById(noteId);
     }
 
+    //根据noteId获取笔记评论
+    @GetMapping("/getCommentById")
+    public Note getCommentById(@RequestParam int noteId){
+        return noteService.getById(noteId);
+    }
+
+    //根据noteId进行点赞操作
+    @GetMapping("/likeNote")
+    public Note likeNote(@RequestParam int userId,
+                         @RequestParam int noteId){
+        return noteService.getById(noteId);
+    }
+    //根据noteId进行点赞操作
+    @GetMapping("/getLikedNote")
+    public Note getLikedNote(@RequestParam int userId,
+                         @RequestParam int noteId){
+        return noteService.getById(noteId);
+    }
 
     @PostMapping("/saveNote")
     public boolean saveNote(@RequestBody Note note) {

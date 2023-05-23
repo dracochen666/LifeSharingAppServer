@@ -11,14 +11,19 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName(value = "User")
-public class User {
+@TableName(value = "Comment")
+public class NoteComment {
 
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId;
-    @TableField(value = "user_name")
-    private String userName;
-    @TableField(value = "user_password")
-    private String password;
+    @TableId(value = "comment_id", type = IdType.AUTO)
+    private Integer commentId;
+
+    @TableField("comment_from")
+    private int commentFrom;
+
+    @TableField("comment_content")
+    private int commentContent;
+
+    @TableField("create_time")
+    private int createTime;
 
 }

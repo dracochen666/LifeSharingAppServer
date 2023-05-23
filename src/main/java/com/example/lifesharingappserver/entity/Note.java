@@ -43,6 +43,5 @@ public class Note {
     private String noteOwner;
     @TableField("note_likednumber")
     private String noteLikedNumber;
-    @TableField("note_collectednumber")
-    private String noteCollectedNumber;
+
 }

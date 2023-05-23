@@ -29,5 +29,4 @@ public class NoteDTO {
 
     private String noteOwner;
     private String noteLikedNumber;
-    private String noteCollectedNumber;
 }
