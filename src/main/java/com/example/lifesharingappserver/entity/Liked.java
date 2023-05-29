@@ -1,4 +1,4 @@
-package com.example.lifesharingappserver.controller.dto;
+package com.example.lifesharingappserver.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -11,12 +11,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+@TableName(value = "Liked")
+public class Liked {
 
+    @TableId(value = "liked_id", type = IdType.AUTO)
+    private Integer likedId;
+    @TableField(value = "user_name")
     private Integer userId;
-    private String userName;
-    private String password;
-    private String newPassword;
-    private String token;
+    @TableField(value = "user_name")
+    private Integer noteId;
 
 }

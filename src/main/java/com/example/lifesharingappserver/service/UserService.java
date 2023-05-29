@@ -12,6 +12,7 @@ import com.example.lifesharingappserver.utils.TokenUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.rmi.ServerException;
 import java.util.List;
 
@@ -19,6 +20,8 @@ import java.util.List;
 public class UserService extends ServiceImpl<UserMapper, User> {
     private Log LOG = Log.get();
 
+    @Resource
+    UserMapper userMapper;
     public UserDTO login(UserDTO userDTO) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_name", userDTO.getUserName());
@@ -63,4 +66,16 @@ public class UserService extends ServiceImpl<UserMapper, User> {
             throw new ServiceException(Constants.CODE_600,"用户名已存在");
         }
     }
+
+    public boolean updatePassword(UserDTO userDTO) {
+        int update = userMapper.updatePassword(userDTO);
+        if(update == 1){
+            return true;
+        }
+        if (update < 1) {
+            throw new ServiceException(Constants.CODE_600, "密码错误");
+        }
+        return false;
+    }
+
 }

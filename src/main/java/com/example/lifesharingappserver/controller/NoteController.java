@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
@@ -30,6 +29,7 @@ public class NoteController{
     public List<Note> getAllNote(){
         return noteService.list();
     }
+
 
     //获取用户发布的笔记
     @GetMapping("/getUserPublishedNote")
@@ -52,18 +52,6 @@ public class NoteController{
         return noteService.getById(noteId);
     }
 
-    //根据noteId进行点赞操作
-    @GetMapping("/likeNote")
-    public Note likeNote(@RequestParam int userId,
-                         @RequestParam int noteId){
-        return noteService.getById(noteId);
-    }
-    //根据noteId进行点赞操作
-    @GetMapping("/getLikedNote")
-    public Note getLikedNote(@RequestParam int userId,
-                         @RequestParam int noteId){
-        return noteService.getById(noteId);
-    }
 
     @PostMapping("/saveNote")
     public boolean saveNote(@RequestBody Note note) {
@@ -143,7 +131,7 @@ public class NoteController{
         IPage<Note> page = new Page<>(pageNum,pageSize);
         QueryWrapper<Note> queryWrapper = new QueryWrapper<>();
         System.out.println(topics);
-        if (!topics.toString().equals("")) {
+        if (!topics.equals("")) {
             queryWrapper.like("note_topics", topics);
         }
         return noteService.page(page, queryWrapper);

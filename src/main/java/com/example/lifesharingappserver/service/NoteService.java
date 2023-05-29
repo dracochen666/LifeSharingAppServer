@@ -17,4 +17,6 @@ public class NoteService extends ServiceImpl<NoteMapper, Note> {
         BeanUtils.copyProperties(note, noteDTO);
         return noteDTO;
     }
+
+
 }

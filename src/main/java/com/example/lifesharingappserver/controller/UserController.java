@@ -67,7 +67,12 @@ public class UserController {
     public boolean saveUser(@RequestBody User user) {
         return userService.saveOrUpdate(user);
     }
-
+    // 新增或者更新
+    @PostMapping("/password")
+    public Result password(@RequestBody UserDTO userDTO) {
+//        boolean updateResult =
+        return Result.success(userService.updatePassword(userDTO));
+    }
     @DeleteMapping("/delete")
     public boolean deleteNoteById(@RequestParam Integer userId) {
         return userService.removeById(userId);
